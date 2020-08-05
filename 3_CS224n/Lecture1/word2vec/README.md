@@ -1,4 +1,4 @@
-This page is the implementation Word2Vec.
+This page is the implementation Word2Vec.  
 My code implements the word2vec algorithm manually without supporting library like glove.
 
 Dataset    
