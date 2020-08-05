@@ -9,7 +9,7 @@ Below is the schedule of the class.
 |:---:|:---:|:---:|:---:|:---:|:---:|
 |1|Introduction and Word Vectors|Assignment1||YES|2020.08.04|
 ||Gensim word vectors examples|||NO||
-||Word2Vec Tutorial - The SkipGram Model|||NO||
+||Word2Vec Tutorial - The SkipGram Model|||YES|2020.08.05|
 ||Word2Vec Paper|||NO||
 ||Negative Sampling paper|||NO||
 |2|Word Vectors2 and Word Senses|||NO||
