@@ -11,8 +11,8 @@ Below is the schedule of the class.
 ||Gensim word vectors examples|||YES|2020.08.05|
 ||Word2Vec Tutorial - The SkipGram Model|||YES|2020.08.05|
 ||Word2Vec Paper|||YES|2020.08.05|
-||Negative Sampling paper|||NO||
-|2|Word Vectors2 and Word Senses|||NO||
+||Negative Sampling paper|||YES|2020.08.09|
+|2|Word Vectors2 and Word Senses|||YES|2020.08.10|
 ||GloVe paper|||NO||
 ||Improving Distributional Similarly...|||NO||
 ||Evaluation methods for...|||NO||
