@@ -19,5 +19,18 @@ Below is the schedule of the class.
 |3|Python review session|NO||||
 |4|Word Window Classification, Neural Networks, and Pytorch|NO||Assignment2|Assignment1|
 ||Review of differential calculus|NO||||
+|5|Matrix Calculus and Backpropagation|NO||||
+||CS231n notes on network architecture|NO||||
+||CS231n notes on backprop|NO||||
+||Learning Representations by Backprop. Errors|NO||||
+||Derivatives, Backprop., and Vectorization|NO||||
+||Yes you should understand backprop.|NO||||
+|6|Linguistic Structure:Dependency Parsing|NO||Assignment3|Assignment2|
+||Incrementality in Deterministic Dependency Parsing|NO||||
+||A Fast and Accurate Dependency Parser using Neural Networks|NO||||
+||Dependency Parsing|NO||||
+||Globally Normalized Transition-Based Neural Networks|NO||||
+||Universal Stanford Dependencies: A cross-linguistic typology|NO||||
+||Universal Dependencies website|NO||||
 
 etc...
