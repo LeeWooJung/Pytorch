@@ -13,7 +13,7 @@ Below is the schedule of the class.
 ||Word2Vec Paper|YES|2020.08.05|||
 ||Negative Sampling paper|YES|2020.08.09|||
 |2|Word Vectors2 and Word Senses|YES|2020.08.10||Assignment1-Done|
-||GloVe paper|NO||||
+||GloVe paper|YES|2020.08.11|||
 ||Improving Distributional Similarly...|NO||||
 ||Evaluation methods for...|NO||||
 |3|Python review session|NO||||
