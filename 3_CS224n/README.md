@@ -15,8 +15,8 @@ Below is the schedule of the class.
 |2|Word Vectors2 and Word Senses|YES|2020.08.10||Assignment1-Done|
 ||GloVe paper|YES|2020.08.11|||
 ||Improving Distributional Similarity with Lessons Learned from Word Embeddings|YES|2020.08.12|||
-||Evaluation methods for...|NO||||
-|3|Python review session|NO||||
+||Evaluation methods for...|YES|2020.08.15|||
+|3|Python review session|YES|2020.08.16|||
 |4|Word Window Classification, Neural Networks, and Pytorch|NO||Assignment2|Assignment1|
 ||Review of differential calculus|NO||||
 |5|Matrix Calculus and Backpropagation|NO||||
