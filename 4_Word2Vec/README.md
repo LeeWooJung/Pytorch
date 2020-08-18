@@ -11,6 +11,6 @@ Word2Vec implementation using Pytorch
 Version Control
 ==================================================
 
-torch: 1.5.1  
-torchvision: 0.6.0a0+35d732a  
-numpy: 1.18.5  
+* torch: 1.5.1  
+* torchvision: 0.6.0a0+35d732a  
+* numpy: 1.18.5  
