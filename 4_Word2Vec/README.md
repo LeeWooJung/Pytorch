@@ -8,7 +8,7 @@ Word2Vec implementation using Pytorch
   - https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf
 
 
-* Version Control
+Version Control
 ==================================================
 
 torch: 1.5.1  
