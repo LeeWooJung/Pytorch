@@ -6,8 +6,6 @@ import codecs
 import pickle
 import argparse
 
-from nltk.tokenize import sent_tokenize
-
 parser = argparse.ArgumentParser()
 parser.add_argument('--datapath', default = './data/corpus.txt', help='Location of the corpus dataset')
 parser.add_argument('--window_size', default = 5, help = 'Window size')
