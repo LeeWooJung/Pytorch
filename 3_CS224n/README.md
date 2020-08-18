@@ -17,7 +17,7 @@ Below is the schedule of the class.
 ||Improving Distributional Similarity with Lessons Learned from Word Embeddings|YES|2020.08.12|||
 ||Evaluation methods for...|YES|2020.08.15|||
 |3|Python review session|YES|2020.08.16|||
-|4|Word Window Classification, Neural Networks, and Pytorch|NO||Assignment2|Assignment1|
+|4|Word Window Classification, Neural Networks, and Pytorch|YES|2020.08.17|Assignment2|Assignment1|
 ||Review of differential calculus|NO||||
 |5|Matrix Calculus and Backpropagation|NO||||
 ||CS231n notes on network architecture|NO||||
