@@ -8,3 +8,4 @@ Pytorch Exercise
 * Word2Vec
 * Attention Mechanism(be in practice)
 * Transformer(to be added...)
+* Other mechanism practice
