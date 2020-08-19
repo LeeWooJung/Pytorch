@@ -47,10 +47,12 @@ class SkipGram_with_NS(nn.Module):
 		batch_size = center.shape[0]
 		context_size = contexts.shape[1]
 
+		negative = torch.multinomial(self.wordfreq, batch_size * context_size * self.num_negs, replacement = True).view(batch_size, -1)
+
 		# centerV : [batch size, emb dim]
 		# contextV : [batch size, context size, emb dim]
 		centerV = self.word2vec.input_forward(center)
 		contextV = self.word2vec.output_forward(contexts)
+		negativeV = self.word2vec.output_forward(negative)
 
-
-		return centerV, contextV
+		return centerV, contextV, negativeV
