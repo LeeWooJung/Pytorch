@@ -18,8 +18,8 @@ Below is the schedule of the class.
 ||Evaluation methods for...|YES|2020.08.15|||
 |3|Python review session|YES|2020.08.16|||
 |4|Word Window Classification, Neural Networks, and Pytorch|YES|2020.08.17|Assignment2|Assignment1|
-||Review of differential calculus|NO||||
-|5|Matrix Calculus and Backpropagation|NO||||
+||Review of differential calculus|YES|2020.08.18|||
+|5|Matrix Calculus and Backpropagation|YES|2020.08.19|||
 ||CS231n notes on network architecture|NO||||
 ||CS231n notes on backprop|NO||||
 ||Learning Representations by Backprop. Errors|NO||||
