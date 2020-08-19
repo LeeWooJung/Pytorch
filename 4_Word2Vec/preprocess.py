@@ -78,7 +78,7 @@ class Preprocess(object):
 		left = sentence[max(0,index - self.window_size):index]
 		right = sentence[index+1: min(len(sentence), index + self.window_size)+1]
 
-		contexts = [self.unk for _ in range(self.window_size - index)] + left + right + [self.unk for _ in range(self.window_size + index - len(sentence))]
+		contexts = [self.unk for _ in range(self.window_size - index)] + left + right + [self.unk for _ in range(self.window_size + index - len(sentence)+1)]
 
 		center_idx = self.word2idx[center]
 		contexts_idx = [self.word2idx[word] for word in contexts]
@@ -103,5 +103,4 @@ class Preprocess(object):
 
 		pickle.dump(data, open('training_data.dat','wb'))
 		print("DONE!")
-		print("-"*30)
 		return
