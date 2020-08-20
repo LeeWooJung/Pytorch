@@ -1,7 +1,7 @@
 Word2Vec implementation using Pytorch
 ================================================
 
-* I wrote my own word2vec model(python-Pytorch) by referrring to the word2vec model cod of the site below.  
+* I wrote my own word2vec model(python-Pytorch) by referrring to the word2vec model code of the site below.  
   - https://github.com/theeluwin/pytorch-sgns
 
 * You can see Word2Vec paper at here:  
