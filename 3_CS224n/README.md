@@ -24,7 +24,7 @@ Below is the schedule of the class.
 ||CS231n notes on backprop|YES|2020.08.21|||
 ||Learning Representations by Backprop. Errors|YES|2020.08.21|||
 ||Derivatives, Backprop., and Vectorization|YES|2020.08.21|||
-||Yes you should understand backprop.|YES|2020.08.21|||
+||Yes you should understand backprop.|YES|2020.08.21||Assignment2-Done|
 |6|Linguistic Structure:Dependency Parsing|NO||Assignment3|Assignment2|
 ||Incrementality in Deterministic Dependency Parsing|NO||||
 ||A Fast and Accurate Dependency Parser using Neural Networks|NO||||
