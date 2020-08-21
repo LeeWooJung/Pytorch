@@ -20,11 +20,11 @@ Below is the schedule of the class.
 |4|Word Window Classification, Neural Networks, and Pytorch|YES|2020.08.17|Assignment2|Assignment1|
 ||Review of differential calculus|YES|2020.08.18|||
 |5|Matrix Calculus and Backpropagation|YES|2020.08.19|||
-||CS231n notes on network architecture|NO||||
-||CS231n notes on backprop|NO||||
-||Learning Representations by Backprop. Errors|NO||||
-||Derivatives, Backprop., and Vectorization|NO||||
-||Yes you should understand backprop.|NO||||
+||CS231n notes on network architecture|YES|2020.08.21|||
+||CS231n notes on backprop|YES|2020.08.21|||
+||Learning Representations by Backprop. Errors|YES|2020.08.21|||
+||Derivatives, Backprop., and Vectorization|YES|2020.08.21|||
+||Yes you should understand backprop.|YES|2020.08.21|||
 |6|Linguistic Structure:Dependency Parsing|NO||Assignment3|Assignment2|
 ||Incrementality in Deterministic Dependency Parsing|NO||||
 ||A Fast and Accurate Dependency Parser using Neural Networks|NO||||
