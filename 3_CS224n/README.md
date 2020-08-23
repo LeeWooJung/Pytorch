@@ -25,8 +25,8 @@ Below is the schedule of the class.
 ||Learning Representations by Backprop. Errors|YES|2020.08.21|||
 ||Derivatives, Backprop., and Vectorization|YES|2020.08.21|||
 ||Yes you should understand backprop.|YES|2020.08.21||Assignment2-Done|
-|6|Linguistic Structure:Dependency Parsing|NO||Assignment3|Assignment2|
-||Incrementality in Deterministic Dependency Parsing|NO||||
+|6|Linguistic Structure:Dependency Parsing|YES|2020.08.22|Assignment3|Assignment2|
+||Incrementality in Deterministic Dependency Parsing|YES|2020.08.22|||
 ||A Fast and Accurate Dependency Parser using Neural Networks|NO||||
 ||Dependency Parsing|NO||||
 ||Globally Normalized Transition-Based Neural Networks|NO||||
