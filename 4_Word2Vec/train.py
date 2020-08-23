@@ -31,7 +31,6 @@ parser.add_argument('--preprocess', default = True, help = 'Need preprocess?')
 args = parser.parse_args()
 
 def LoadData():
-	print("-"*30)
 	print("Load data...", end = ' ')
 	vocab = pickle.load(open('vocab.dat','rb'))
 	word2idx = pickle.load(open('word2idx.dat','rb'))
@@ -42,14 +41,17 @@ def LoadData():
 	return (vocab, word2idx, idx2word, wordcount, training_data)
 
 def SubsampleData(data, wordfreq):
-	print("-"*30)
 	print("Sub sampling data...", end = ' ')
 	t = args.sub_sample_t
 
 	centers, contexts = [], []
 	probability = (wordfreq-t)/wordfreq - np.sqrt(t/wordfreq)
 	np.clip(probability, 0, 1)
+	cnt = 0
 	for center, context in data:
+		cnt += 1
+		if not cnt % 1000:
+			print("Sub sampling from {}kth data...".format(cnt//1000), end='\r')
 		if random.random() > probability[center]:
 			centers.append(center)
 			contexts.append(context)
@@ -58,7 +60,7 @@ def SubsampleData(data, wordfreq):
 	contexts = torch.LongTensor(contexts)
 	dataset = TensorDataset(centers, contexts)
 
-	print("DONE")
+	print("")
 	return dataset
 
 def getLoss(center, context, negative):
@@ -98,7 +100,6 @@ def train():
 	device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 	if args.preprocess:
-		print("-"*30)
 		print("Preprocess step start...")
 		preprocess = Preprocess(args.data_path, args.window_size)
 		preprocess.build_data(args.max_vocab)
@@ -116,7 +117,6 @@ def train():
 
 	optimizer = optim.Adam(model.parameters())
 
-	print("-"*30)
 	print("Start training word2vec model...")
 	for epoch in range(1, args.n_epochs+1):
 		dataloader = DataLoader(dataset, batch_size = args.batch_size, shuffle = True)
@@ -135,8 +135,6 @@ def train():
 			epoch_loss += loss.item()
 
 		print("Average loss: {0:.4f}".format(epoch_loss/total_batches))
-	print("DONE")
-	print("-"*30)
 	print("Save the model...", end = ' ')
 	idx2vec = word2vec.input.weight.data.cpu().numpy()
 	pickle.dump(idx2vec, open('idx2vec.dat', 'wb'))
