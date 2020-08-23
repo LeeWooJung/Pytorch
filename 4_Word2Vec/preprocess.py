@@ -6,12 +6,6 @@ import codecs
 import pickle
 import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--datapath', default = './data/corpus.txt', help='Location of the corpus dataset')
-parser.add_argument('--window_size', default = 5, help = 'Window size')
-parser.add_argument('--max_vocab', default= 20000, help = 'Maximum vocabulary size')
-args = parser.parse_args()
-
 def checkCorpus(datapath):
 	corpus = open(datapath, 'r', encoding ='utf-8')
 	cnt = 0
@@ -25,7 +19,7 @@ def checkCorpus(datapath):
 
 
 class Preprocess(object):
-	def __init__(self, datapath, window_size):
+	def __init__(self, datapath='./data/corpus.txt', window_size=5):
 		self.datapath = datapath 
 		self.window_size = window_size
 
@@ -47,7 +41,7 @@ class Preprocess(object):
 	def build_data(self, max_vocab):
 		sentences = self.split_sentences()
 		print("-"*30)
-		print("Building data...")
+		print("Building data...", end = ' ')
 		self.unk = '<unk>'
 		self.word_count = {self.unk: 1}
 		for idx, sentence in enumerate(sentences):
@@ -87,7 +81,7 @@ class Preprocess(object):
 
 	def build_training_data(self):
 		print("-"*30)
-		print("Building training data...")
+		print("Building training data...", end = ' ')
 		data = []
 		sentences = self.split_sentences()
 		for sentence in sentences:
