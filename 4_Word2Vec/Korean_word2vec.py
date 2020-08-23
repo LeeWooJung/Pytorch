@@ -24,7 +24,7 @@ parser.add_argument('--emb_dim', default = 300, help = 'Embedding dimension')
 parser.add_argument('--max_vocab', default = 20000, help = 'Maximum vocabulary size')
 parser.add_argument('--window_size', default = 5, help = 'Window size')
 parser.add_argument('--batch_size', default = 4096, help = 'Mini-batch size')
-parser.add_argument('--n_epochs', default = 100, help = 'Number of epochs')
+parser.add_argument('--n_epochs', default = 10, help = 'Number of epochs')
 parser.add_argument('--sub_sample_t', default = 0.00001, help = 'sub sampling threshold')
 
 args = parser.parse_args()
@@ -84,7 +84,6 @@ def train():
 	model = SkipGram_with_NS(word2vec, args.max_vocab, args.num_negs, wordfreq).to(device)
 	optimizer = optim.Adam(model.parameters())
 
-	print("-"*30)
 	print("Start training word2vec model...")
 	for epoch in range(1, args.n_epochs+1):
 		dataloader = DataLoader(dataset, batch_size = args.batch_size, shuffle = True)
@@ -104,7 +103,6 @@ def train():
 
 		print("Average loss: {0:.4f}".format(epoch_loss/total_batches))
 	print("DONE")
-	print("-"*30)
 	print("Save the model...", end = ' ')
 	idx2vec = word2vec.input.weight.data.cpu().numpy()
 	pickle.dump(idx2vec, open('idx2vec.dat', 'wb'))
@@ -115,7 +113,7 @@ def train():
 
 if __name__ == '__main__':
 	make_file(args.data_path)
-	process = Preprocess(args.data_path, args.window_size)
+	process = Preprocess(args.data_path, args.window_size, kor = True)
 	process.build_data(args.max_vocab)
 	process.build_training_data()
 	train()
