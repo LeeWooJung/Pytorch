@@ -20,6 +20,7 @@ from model import SkipGram_with_NS
 parser = argparse.ArgumentParser()
 parser.add_argument('--num_negs', default = 20, help = 'Number of negative samples per center word')
 parser.add_argument('--data_path', default = './data/kor_corpus.txt', help = 'Korean words dataset')
+parser.add_argument('--training_data', default = './training_data.dat', help = 'training data path')
 parser.add_argument('--emb_dim', default = 300, help = 'Embedding dimension')
 parser.add_argument('--max_vocab', default = 20000, help = 'Maximum vocabulary size')
 parser.add_argument('--window_size', default = 5, help = 'Window size')
@@ -114,6 +115,8 @@ def train():
 if __name__ == '__main__':
 	make_file(args.data_path)
 	process = Preprocess(args.data_path, args.window_size, kor = True)
-	process.build_data(args.max_vocab)
-	process.build_training_data()
+	if not os.path.isfile(args.training_data):
+		print("There is no training dataset... Building START")
+		process.build_data(args.max_vocab)
+		process.build_training_data()
 	train()
