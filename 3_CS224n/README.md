@@ -32,5 +32,35 @@ Below is the schedule of the class.
 ||Globally Normalized Transition-Based Neural Networks|NO||||
 ||Universal Stanford Dependencies: A cross-linguistic typology|NO||||
 ||Universal Dependencies website|NO||||
-
+|7|The probability of a sentence? Recurrent Neural Networks and Language Models|NO||||
+||N-gram Language Model|NO||||
+||The Unreasonable Effectiveness of Recurrent Neural Networks|NO||||
+||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.1 & 10.2)|NO||||
+||On Chomsky and the Two Cultures of Statistical Learning|NO||||
+|8|Vanishing Gradients and Fancy RNNs|NO||||
+||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.3, 10.5, and 10.7-12)|NO||||
+||Learning long-term dependencies with gradient descent is difficult|NO||||
+||On the difficulty of training Recurrent Neural Networks|NO||||
+||Vanishing Gradients Jupyter Notebook|NO||||
+||Understanding LSTM Networks|NO||Assignment4|Assignment2|
+|9|Machine Translation, Seq2Seq and Attention|NO||||
+||Statistical Machine Translation slides, CS224n 2015(lecture2/3/4)|NO||||
+||Statistical Machine Translation (book by Philipp Koehn)|NO||||
+||BLEU (original paper)|NO||||
+||Sequence to Sequence Learning with Neural Networks (original seq2seq NMT paper)|NO||||
+||Sequence Transduction with Recurrent Neural Networks (early seq2seq speech recognition paper)|NO||||
+||Neural Machine Translation by Jointly Learning to Align and Translate (original seq2seq+attention paper)|NO||||
+||Attention and Augmented Recurrent Neural Networks (blog post overview)|NO||||
+||Massive Exploration of Neural Machine Translation Architectures (practical advice for hyperparameter choices)|NO||||
+|10|Practical Tips for Final Projects|NO||||
+||Practical Methodology(Deep Learning book chapter)|NO||Project Proposal||
+|11|Question Answering, the Default Final Project, and an introduction to Transformer architectures|NO|||Assignment4|
+||Project Handout|NO||||
+||Attention Is All You Need|NO||||
+||The Illustrated Transformer|NO||||
+||Transformer (Google AI blog post)|NO||||
+||Layer Normalization|NO||||
+||Image Transformer|NO||||
+||Music Transformer: Generating music with long-term structure|NO||||
+  
 etc...
