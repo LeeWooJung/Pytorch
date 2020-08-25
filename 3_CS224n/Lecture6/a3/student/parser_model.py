@@ -71,8 +71,17 @@ class ParserModel(nn.Module):
         ###     Initialization: https://pytorch.org/docs/stable/nn.init.html
         ###     Dropout: https://pytorch.org/docs/stable/nn.html#dropout-layers
 
+        self.embed_to_hidden_weight = nn.Parameter(torch.zeros(self.n_features*self.embed_size, self.hidden_size))
+        self.embed_to_hidden_bias = nn.Parameter(torch.ones(self.hidden_size))
+        nn.init.xavier_uniform_(self.embed_to_hidden_weight)
+        nn.init.uniform_(self.embed_to_hidden_bias)
 
+        self.dropout = nn.Dropout(p = self.dropout_prob)
 
+        self.hidden_to_logits_weight = nn.Parameter(torch.zeros(self.hidden_size, self.n_classes))
+        self.hidden_to_logits_bias = nn.Parameter(torch.ones(self.n_classes))
+        nn.init.xavier_uniform_(self.hidden_to_logits_weight)
+        nn.init.uniform_(self.hidden_to_logits_bias)
 
         ### END YOUR CODE
 
@@ -104,7 +113,9 @@ class ParserModel(nn.Module):
         ###     Gather: https://pytorch.org/docs/stable/torch.html#torch.gather
         ###     View: https://pytorch.org/docs/stable/tensors.html#torch.Tensor.view
 
-
+        # I don't know how to use torch.gather to get x.... If you know plz teach me how to use torch.gather to get x!
+        batch_size = w.shape[0]
+        x = torch.index_select(self.embeddings, 0, torch.flatten(w)).view(batch_size, -1)
 
         ### END YOUR CODE
         return x
@@ -141,6 +152,11 @@ class ParserModel(nn.Module):
         ###     Matrix product: https://pytorch.org/docs/stable/torch.html#torch.matmul
         ###     ReLU: https://pytorch.org/docs/stable/nn.html?highlight=relu#torch.nn.functional.relu
 
+        assert w.shape[1] == self.n_features
+        x = self.embedding_lookup(w)
+        h = F.relu(torch.matmul(x, self.embed_to_hidden_weight) + self.embed_to_hidden_bias)
+        h = self.dropout(h)
+        logits = torch.matmul(h, self.hidden_to_logits_weight) + self.hidden_to_logits_bias
 
         ### END YOUR CODE
         return logits
