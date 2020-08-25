@@ -28,7 +28,7 @@ Below is the schedule of the class.
 |6|Linguistic Structure:Dependency Parsing|YES|2020.08.22|Assignment3|Assignment2|
 ||Incrementality in Deterministic Dependency Parsing|YES|2020.08.22|||
 ||A Fast and Accurate Dependency Parser using Neural Networks|YES|2020.08.24|||
-||Dependency Parsing|YES|2020.08.24|||
+||Dependency Parsing|YES|2020.08.25||Assignment3-Done|
 ||Globally Normalized Transition-Based Neural Networks|NO||||
 ||Universal Stanford Dependencies: A cross-linguistic typology|NO||||
 ||Universal Dependencies website|NO||||
