@@ -29,8 +29,8 @@ Below is the schedule of the class.
 ||Incrementality in Deterministic Dependency Parsing|YES|2020.08.22|||
 ||A Fast and Accurate Dependency Parser using Neural Networks|YES|2020.08.24|||
 ||Dependency Parsing|YES|2020.08.25||Assignment3-Done|
-||Globally Normalized Transition-Based Neural Networks|NO||||
-||Universal Stanford Dependencies: A cross-linguistic typology|NO||||
+||Globally Normalized Transition-Based Neural Networks|YES|2020.08.27|||
+||Universal Dependencies: A cross-linguistic typology|NO||||
 ||Universal Dependencies website|NO||||
 |7|The probability of a sentence? Recurrent Neural Networks and Language Models|NO||||
 ||N-gram Language Model|NO||||
