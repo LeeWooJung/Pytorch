@@ -32,8 +32,8 @@ Below is the schedule of the class.
 ||Globally Normalized Transition-Based Neural Networks|YES|2020.08.27|||
 ||Universal Dependencies: A cross-linguistic typology|YES|2020.08.28|||
 ||Universal Dependencies website|YES|2020.08.28|||
-|7|The probability of a sentence? Recurrent Neural Networks and Language Models|NO||||
-||N-gram Language Model|NO||||
+|7|The probability of a sentence? Recurrent Neural Networks and Language Models|YES|2020.08.28|||
+||N-gram Language Model|YES|2020.08.28|||
 ||The Unreasonable Effectiveness of Recurrent Neural Networks|NO||||
 ||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.1 & 10.2)|NO||||
 ||On Chomsky and the Two Cultures of Statistical Learning|NO||||
