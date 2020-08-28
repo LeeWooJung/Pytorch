@@ -30,8 +30,8 @@ Below is the schedule of the class.
 ||A Fast and Accurate Dependency Parser using Neural Networks|YES|2020.08.24|||
 ||Dependency Parsing|YES|2020.08.25||Assignment3-Done|
 ||Globally Normalized Transition-Based Neural Networks|YES|2020.08.27|||
-||Universal Dependencies: A cross-linguistic typology|NO||||
-||Universal Dependencies website|NO||||
+||Universal Dependencies: A cross-linguistic typology|YES|2020.08.28|||
+||Universal Dependencies website|YES|2020.08.28|||
 |7|The probability of a sentence? Recurrent Neural Networks and Language Models|NO||||
 ||N-gram Language Model|NO||||
 ||The Unreasonable Effectiveness of Recurrent Neural Networks|NO||||
