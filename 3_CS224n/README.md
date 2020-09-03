@@ -34,9 +34,9 @@ Below is the schedule of the class.
 ||Universal Dependencies website|YES|2020.08.28|||
 |7|The probability of a sentence? Recurrent Neural Networks and Language Models|YES|2020.08.28|||
 ||N-gram Language Model|YES|2020.08.28|||
-||The Unreasonable Effectiveness of Recurrent Neural Networks|NO||||
-||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.1 & 10.2)|NO||||
-||On Chomsky and the Two Cultures of Statistical Learning|NO||||
+||The Unreasonable Effectiveness of Recurrent Neural Networks|YES|2020.09.02|||
+||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.1 & 10.2)|YES|2020.09.02|||
+||On Chomsky and the Two Cultures of Statistical Learning|YES|2020.09.03|||
 |8|Vanishing Gradients and Fancy RNNs|NO||Assignment4|Assignment3|
 ||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.3, 10.5, and 10.7-12)|NO||||
 ||Learning long-term dependencies with gradient descent is difficult|NO||||
