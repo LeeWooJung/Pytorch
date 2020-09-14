@@ -38,9 +38,9 @@ Below is the schedule of the class.
 ||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.1 & 10.2)|YES|2020.09.02|||
 ||On Chomsky and the Two Cultures of Statistical Learning|YES|2020.09.03|||
 |8|Vanishing Gradients and Fancy RNNs|YES|2020.09.04|Assignment4|Assignment3|
-||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.3, 10.5, and 10.7-12)|NO||||
-||Learning long-term dependencies with gradient descent is difficult|NO||||
-||On the difficulty of training Recurrent Neural Networks|NO||||
+||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.3, 10.5, and 10.7-12)|YES|2020.09.08|||
+||Learning long-term dependencies with gradient descent is difficult|YES|2020.09.10|||
+||On the difficulty of training Recurrent Neural Networks|YES|2020.09.14|||
 ||Vanishing Gradients Jupyter Notebook|NO||||
 ||Understanding LSTM Networks|NO||||
 |9|Machine Translation, Seq2Seq and Attention|NO||||
