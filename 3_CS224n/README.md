@@ -37,7 +37,7 @@ Below is the schedule of the class.
 ||The Unreasonable Effectiveness of Recurrent Neural Networks|YES|2020.09.02|||
 ||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.1 & 10.2)|YES|2020.09.02|||
 ||On Chomsky and the Two Cultures of Statistical Learning|YES|2020.09.03|||
-|8|Vanishing Gradients and Fancy RNNs|NO||Assignment4|Assignment3|
+|8|Vanishing Gradients and Fancy RNNs|YES|2020.09.04|Assignment4|Assignment3|
 ||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.3, 10.5, and 10.7-12)|NO||||
 ||Learning long-term dependencies with gradient descent is difficult|NO||||
 ||On the difficulty of training Recurrent Neural Networks|NO||||
