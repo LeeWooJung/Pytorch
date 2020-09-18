@@ -41,7 +41,7 @@ Below is the schedule of the class.
 ||Sequence Modeling: Recurrent and Recursive Neural Nets(Sec. 10.3, 10.5, and 10.7-12)|YES|2020.09.08|||
 ||Learning long-term dependencies with gradient descent is difficult|YES|2020.09.10|||
 ||On the difficulty of training Recurrent Neural Networks|YES|2020.09.14|||
-||Vanishing Gradients Jupyter Notebook|NO||||
+||Vanishing Gradients Jupyter Notebook|NO|2020.09.18||Assignment4-Done|
 ||Understanding LSTM Networks|NO||||
 |9|Machine Translation, Seq2Seq and Attention|NO||||
 ||Statistical Machine Translation slides, CS224n 2015(lecture2/3/4)|NO||||
