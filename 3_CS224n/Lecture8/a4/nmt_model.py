@@ -257,7 +257,7 @@ class NMT(nn.Module):
         ###     Tensor Stacking:
         ###         https://pytorch.org/docs/stable/torch.html#torch.stack
 
-        enc_hiddens_proj = self.att_projection(enc_hiddens).permute(1, 0, 2) # enc_hiddens_proj: [batch size, src_len, h]
+        enc_hiddens_proj = self.att_projection(enc_hiddens) # enc_hiddens_proj: [batch size, src_len, h]
         Y = self.model_embeddings.target(target_padded) # Y : [tgt_len, batch size, e]
         for Y_t in torch.split(Y, 1):
             Y_t = Y_t.squeeze(0) # Y : [batch size, e], o_prev : [batch size, h]
@@ -267,7 +267,7 @@ class NMT(nn.Module):
             combined_outputs.append(o_t)
             o_prev = o_t
 
-        combined_outputs = torch.stack([co for co in combined_outputs])
+        combined_outputs = torch.stack(combined_outputs)
 
 
         ### END YOUR CODE
