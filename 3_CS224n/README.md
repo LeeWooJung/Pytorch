@@ -43,7 +43,7 @@ Below is the schedule of the class.
 ||On the difficulty of training Recurrent Neural Networks|YES|2020.09.14|||
 ||Vanishing Gradients Jupyter Notebook|YES|2020.09.18||Assignment4-Done|
 ||Understanding LSTM Networks|YES|2020.09.18|||
-|9|Machine Translation, Seq2Seq and Attention|NO||||
+|9|Machine Translation, Seq2Seq and Attention|YES|2020.09.18|||
 ||Statistical Machine Translation slides, CS224n 2015(lecture2/3/4)|NO||||
 ||Statistical Machine Translation (book by Philipp Koehn)|NO||||
 ||BLEU (original paper)|NO||||
