@@ -1,3 +1,4 @@
+    args['--cuda'] = True
 This page records my achivements in the class cs224n.
 =============================================================
 You can find the assigments & lectures at:  
@@ -43,9 +44,9 @@ Below is the schedule of the class.
 ||On the difficulty of training Recurrent Neural Networks|YES|2020.09.14|||
 ||Vanishing Gradients Jupyter Notebook|YES|2020.09.18||Assignment4-Done|
 ||Understanding LSTM Networks|YES|2020.09.18|||
-|9|Machine Translation, Seq2Seq and Attention|NO||||
-||Statistical Machine Translation slides, CS224n 2015(lecture2/3/4)|NO||||
-||Statistical Machine Translation (book by Philipp Koehn)|NO||||
+|9|Machine Translation, Seq2Seq and Attention|YES|2020.09.18|||
+||Statistical Machine Translation slides, CS224n 2015(lecture2/3/4)|YES|2020.09.21|||
+||Statistical Machine Translation (book by Philipp Koehn)|YES|2020.09.21|||
 ||BLEU (original paper)|NO||||
 ||Sequence to Sequence Learning with Neural Networks (original seq2seq NMT paper)|NO||||
 ||Sequence Transduction with Recurrent Neural Networks (early seq2seq speech recognition paper)|NO||||
