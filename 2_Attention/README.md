@@ -5,9 +5,9 @@ This model(Seq2Seq with various version of attentions) is to translate from Engl
 This model uses tokenizer as follows.
 * English tokenizer: spacy
 * Korean tokenizer: mecab
-
-=============================================
+  
 Version Control
+=============================================
 
 * python: 3.6.10
 * pytorch: 1.5.1
