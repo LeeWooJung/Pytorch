@@ -46,7 +46,7 @@ Below is the schedule of the class.
 |9|Machine Translation, Seq2Seq and Attention|YES|2020.09.18|||
 ||Statistical Machine Translation slides, CS224n 2015(lecture2/3/4)|YES|2020.09.21|||
 ||Statistical Machine Translation (book by Philipp Koehn)|YES|2020.09.21|||
-||BLEU (original paper)|NO||||
+||BLEU (original paper)|YES|2020.09.22|||
 ||Sequence to Sequence Learning with Neural Networks (original seq2seq NMT paper)|NO||||
 ||Sequence Transduction with Recurrent Neural Networks (early seq2seq speech recognition paper)|NO||||
 ||Neural Machine Translation by Jointly Learning to Align and Translate (original seq2seq+attention paper)|NO||||
