@@ -48,7 +48,7 @@ Below is the schedule of the class.
 ||Statistical Machine Translation (book by Philipp Koehn)|YES|2020.09.21|||
 ||BLEU (original paper)|YES|2020.09.22|||
 ||Sequence to Sequence Learning with Neural Networks (original seq2seq NMT paper)|YES|2020.09.28|||
-||Sequence Transduction with Recurrent Neural Networks (early seq2seq speech recognition paper)|NO||||
+||Sequence Transduction with Recurrent Neural Networks (early seq2seq speech recognition paper)|YES|2020.09.28|||
 ||Neural Machine Translation by Jointly Learning to Align and Translate (original seq2seq+attention paper)|NO||||
 ||Attention and Augmented Recurrent Neural Networks (blog post overview)|NO||||
 ||Massive Exploration of Neural Machine Translation Architectures (practical advice for hyperparameter choices)|NO||||
