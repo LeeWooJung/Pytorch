@@ -7,26 +7,26 @@ This model uses tokenizer as follows.
 * Korean tokenizer: mecab  
   
 There are many arguments you can use.
-* min_freq: Minimum frequency the words can be involved in Vocab[default: 5].
-* seed: Random seed[default: 1024].
-* batch_size: Size of batch[default: 256].
-* dropout: The probability of dropout[default: 0.3].
-* enc_emb_dim: Dimension of embedded source word in Encoder[default: 128].
-* dec_emb_dim: Dimension of embedded target word in Decoder[default: 128].
-* hidden_dim: Dimension of hidden state in Encoder & Decoder[default: 128].
-* n_layers: Number of layers of botch Encoder & Decoder[default: 2].
-* n_epochs: Number of epochs[default: 25].
-* clip: Gradient clip[default: 1.0].
-* model: Trained model name[default: SeqSeq-attention.pt].
-* train: Check if you want to train model[action: store_true].
-* test: Check if you want to test model[action: store_true].
+* min_freq: Minimum frequency the words can be involved in Vocab [default: 5].
+* seed: Random seed [default: 1024].
+* batch_size: Size of batch [default: 256].
+* dropout: The probability of dropout [default: 0.3].
+* enc_emb_dim: Dimension of embedded source word in Encoder [default: 128].
+* dec_emb_dim: Dimension of embedded target word in Decoder [default: 128].
+* hidden_dim: Dimension of hidden state in Encoder & Decoder [default: 128].
+* n_layers: Number of layers of botch Encoder & Decoder [default: 2].
+* n_epochs: Number of epochs [default: 25].
+* clip: Gradient clip [default: 1.0].
+* model: Trained model name [default: SeqSeq-attention.pt].
+* train: Check if you want to train model [action: store_true].
+* test: Check if you want to test model [action: store_true].
 
 Model
 =============================================
   
-* Model architecture
+* Model architecture  
 [blank]  
-* Attention
+* Attention  
 [blank]  
 * Test Example  
 Sampled test examples of trained model with default arguments are as follows.  
