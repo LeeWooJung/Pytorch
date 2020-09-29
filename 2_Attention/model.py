@@ -7,8 +7,8 @@ class Encoder(nn.Module):
 		super(Encoder, self).__init__()
 
 		self.embedding = nn.Embedding(num_embeddings = len(SRC.vocab),
-				embedding_dim = emb_dim,
-									  padding_idx = SRC.vocab['<pad>'])
+								embedding_dim = emb_dim,
+								padding_idx = SRC.vocab['<pad>'])
 		self.encoder = nn.LSTM(input_size = emb_dim, hidden_size = hidden_dim,
 							   num_layers = n_layers, bidirectional = True, bias = True)
 		self.dropout = nn.Dropout(dropout)
