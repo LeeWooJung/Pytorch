@@ -34,7 +34,7 @@ Sampled test examples of trained model with default arguments are as follows.
 ```
 Source sentence: i will go with you to the bridge , but not a step beyond.  
 Target sentence: 내 가 너 를 데리 고 그 다리 까지 는 갈 수 있 지만 절대로 더 이상 은 갈 수 없 다 .  
-Predicted sentence: 내 가 너 를 데리 고 그 다리 까지 는 갈 수 있 지만 절대로 더 이상 은 갈 수 없다.  
+Predicted sentence: 내 가 너 를 데리 고 그 다리 까지 는 갈 수 있 지만 절대로 더 이상 은 갈 수 없 다.  
 ```
   
 ```
