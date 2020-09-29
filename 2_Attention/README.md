@@ -24,7 +24,7 @@ There are many arguments you can use.
 
 Requirements
 =============================================
-* dataset
+* dataset  
 Since this model uses torchtext.data.TabularDataset in utils.py, you need to have .csv or .tsv type of data  
 I use translation dataset from http://semanticweb.kaist.ac.kr/home/index.php/KAIST_Corpus  
 
