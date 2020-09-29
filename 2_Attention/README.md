@@ -37,11 +37,11 @@ Target sentence: 내 가 너 를 데리 고 그 다리 까지 는 갈 수 있 �
 Predicted sentence: 내 가 너 를 데리 고 그 다리 까지 는 갈 수 있 지만 절대로 더 이상 은 갈 수 없 다.  
 
   
-```
+
 Source sentence: i protest against beding treated in this way .  
 Target sentence: 나 는 이러 한 대우 를 받 는 것 을 항의 했 다 .  
 Predicted sentence: 나 는 이러 한 대우 를 받 는 것 을 __숫자__ 했 다 .  
-```
+
   
 ```
 Source sentence: the shock <unk> his mind .  
