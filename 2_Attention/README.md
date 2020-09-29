@@ -28,7 +28,7 @@ Model
 [blank]  
 * Attention
 [blank]  
-* Test Example
+* Test Example  
 Sampled test examples of trained model with default arguments are as follows.  
   
 > Source sentence: i will go with you to the bridge , but not a step beyond.  
