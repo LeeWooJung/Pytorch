@@ -6,6 +6,8 @@ import torch.nn as nn
 import torch.optim as optim
 from torchtext.data import BucketIterator
 
+import os
+import random
 import argparse
 import numpy as np
 from tqdm import tqdm
@@ -23,16 +25,23 @@ parser.add_argument('--dec_emb_dim', default = 128, type = int, help = "Dimensio
 parser.add_argument('--hidden_dim', default = 128, type = int, help = "Dimension of hidden states")
 parser.add_argument('--n_layers', default = 2, type = int, help = "Number of layers")
 parser.add_argument('--learning_rate', default = 0.0001, type = float, help = "Learning rate")
-parser.add_argument('--n_epochs', default = 10, type = int, help = "Number of epochs")
+parser.add_argument('--n_epochs', default = 25, type = int, help = "Number of epochs")
 parser.add_argument('--clip', default = 1.0, type = float, help = "Gradient Clip")
+parser.add_argument('--model', default = 'Seq2Seq-attention.pt', type = str, help = "Trained model name")
 parser.add_argument('--train', action='store_true')
 parser.add_argument('--test', action='store_true')
 
 args = parser.parse_args()
 
+seed = args.seed
+np.random.seed(seed)
+torch.manual_seed(seed)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+
+
 def train():
 
-	seed = args.seed
 	batch_size = args.batch_size
 	enc_emb_dim = args.enc_emb_dim
 	dec_emb_dim = args.dec_emb_dim
@@ -42,23 +51,17 @@ def train():
 	lr = args.learning_rate
 	n_epochs = args.n_epochs
 	clip = args.clip
+	min_freq = args.min_freq
 	device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 	best_valid_loss = float('inf')
 
-	np.random.seed(seed)
-	torch.manual_seed(seed)
-	torch.backends.cudnn.deterministic = True
-	torch.backends.cudnn.benchmark = False
-
-
-	pre = preprocess(min_freq = args.min_freq)
+	pre = preprocess(min_freq = min_freq)
 	SRC, TRG, tr, val, ts = pre.build()
 	train_iter, valid_iter = BucketIterator.splits(
-							 (tr, val),
-							 batch_size = batch_size,
+							 datasets = (tr, val),
 							 sort = False,
-							 shuffle = True,
+							 batch_size = batch_size,
 							 device = device)
 
 	enc = Encoder(SRC, enc_emb_dim, hidden_dim, n_layers, dropout, device).to(device)
@@ -105,7 +108,7 @@ def train():
 		pbar = tqdm(valid_iter)
 		pbar.set_description("[(Valid) Epoch{}]".format(epoch))
 
-		for batch in pbar:
+		for j, batch in enumerate(pbar):
 
 			src = batch.SRC.to(device)
 			trg = batch.TRG.to(device)
@@ -124,18 +127,97 @@ def train():
 
 		if val_epoch_loss < best_valid_loss:
 			best_valid_loss = val_epoch_loss
-			torch.save({
-						'epoch': n_epochs,
-						'batch_size' : batch_size,
-						'model': model.state_dict(),
-						'optimizer': optimizer.state_dict()
-						}, 'Seq2Seq-attention.pt')
+			torch.save(model, args.model)
 
+def Print(field, sent, From):
+
+	print("{} sentence: ".format(From), end='')
+	for s in sent:
+		if field.vocab.itos[s] in [field.eos_token, field.pad_token]:
+			break
+		elif field.vocab.itos[s] == field.init_token:
+			continue
+		elif field.vocab.itos[s] == field.unk_token:
+			print("<unk> ", end='')
+		else:
+			print("{} ".format(field.vocab.itos[s]), end='')
+	print("")
+
+
+def PrintExample(SRC, TRG, src, trg, output):
+
+	batch_size = src.shape[1]
+	randN = random.randint(0, batch_size-1)
+
+	_src = list(src[:, randN].cpu().numpy())
+	_trg = list(trg[1:, randN].cpu().numpy())
+	_out = list(output[1:, randN, :].squeeze(1).argmax(1).cpu().numpy())
+
+	Print(SRC, _src, "Source")
+	Print(TRG, _trg, "Target")
+	Print(TRG, _out, "Predicted")
+	print("")
+	return
+
+
+
+def test():
+	if not os.path.exists(args.model):
+		raise NameError('There is no model with named {}'.format(args.model))
+		return
+
+	batch_size = args.batch_size
+	enc_emb_dim = args.enc_emb_dim
+	dec_emb_dim = args.dec_emb_dim
+	hidden_dim = args.hidden_dim
+	n_layers = args.n_layers
+	dropout = args.dropout
+	lr = args.learning_rate
+	min_freq = args.min_freq
+	device = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+	pre = preprocess(min_freq = min_freq)
+	SRC, TRG, _, _, ts = pre.build()
+	test_iter = BucketIterator(
+					dataset = ts,
+					sort = False,
+					batch_size = batch_size,
+					device = device)
+
+	model = torch.load(args.model)
+
+	trg_pad_idx = TRG.vocab.stoi[TRG.pad_token]
+	criterion = nn.CrossEntropyLoss(ignore_index = trg_pad_idx).to(device)
+
+	model.eval()
+	avg_loss = 0
+	index = 0
+
+	with torch.no_grad():
+		for i, batch in enumerate(test_iter):
+			index += 1
+
+			src = batch.SRC.to(device)
+			trg = batch.TRG.to(device)
+			output = model(src, trg).to(device)
+
+			PrintExample(SRC, TRG, src, trg, output)
+
+			output = output[1:].view(-1, output.shape[-1])
+			trg = trg[1:].view(-1)
+
+			loss = criterion(output, trg)
+			avg_loss += loss.item()
+
+	avg_loss = avg_loss / len(test_iter)
+	print("[Test] Avg loss: {0:.4f}\n\n".format(avg_loss))
 
 
 def main():
 	if args.train:
 		train()
+	if args.test:
+		test()
 
 
 if __name__ == '__main__':
