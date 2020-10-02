@@ -49,6 +49,7 @@ class Decoder(nn.Module):
 
 		batch_size = enc_hiddens_att.shape[1]
 		hidden_dim = enc_hiddens_att.shape[2]
+		src_len = enc_hiddens.shape[0]
 
 		hidden, cell = init_hidden_cell
 		prev_out = torch.zeros(batch_size, hidden_dim, device = self.device)
@@ -56,7 +57,10 @@ class Decoder(nn.Module):
 		# prev_out: [batch size, hidden dim]
 
 		trg_emb = self.embedding(trg)
-		# real_trg_emb: [trg len -1, batch size, embedding dim]
+		# trg_emb: [trg len -1, batch size, embedding dim]
+
+		attention_weight = torch.FloatTensor(batch_size, src_len, trg_emb.shape[0])
+		# attention_weight: [batch size, source len, target len - 1]
 
 		for i in range(trg_emb.shape[0]):
 
@@ -68,12 +72,14 @@ class Decoder(nn.Module):
 			# hidden: [batch size, hidden dim]
 			# cell: [batch size, hidden dim]
 
-			e_t = torch.bmm(enc_hiddens_att.permute(1,0,2), hidden.unsqueeze(2)).squeeze(2).permute(1,0)
+			e_t = torch.bmm(enc_hiddens_att.permute(1,0,2), hidden.unsqueeze(2)).squeeze(2)
 			# e_t: [batch size, src len]
-			e_t.data.masked_fill_(enc_masks.bool(), -float('inf'))
+			e_t.data.masked_fill_(enc_masks.permute(1,0).bool(), -float('inf'))
 
-			alpha_t = F.softmax(e_t, dim=1).permute(1,0)
+			alpha_t = F.softmax(e_t, dim=1)
 			# alpha_t: [batch size, src len]
+
+			attention_weight[:,:,i] = alpha_t
 
 			a_t = torch.bmm(alpha_t.unsqueeze(1), enc_hiddens.permute(1,0,2)).squeeze(1)
 			# a_t: [batch size, 2*hidden]
@@ -90,7 +96,7 @@ class Decoder(nn.Module):
 		outputs = self.fc_out(outputs)
 		# outputs: [trg len, batch size, trg vocab size]
 
-		return outputs
+		return outputs, attention_weight
 
 class Seq2Seq(nn.Module):
 	def __init__(self, encoder, decoder, n_layers, hidden_dim, device):
@@ -129,6 +135,6 @@ class Seq2Seq(nn.Module):
 		# cell: [batch size, hidden dim]
 		# enc_hiddens_att = [src len, batch size, hidden dim]
 
-		dec_outputs = self.decoder(trg, enc_hiddens, enc_hiddens_att, enc_masks, (hidden, cell))
+		dec_outputs, attention_weight  = self.decoder(trg, enc_hiddens, enc_hiddens_att, enc_masks, (hidden, cell))
 
 		return dec_outputs
