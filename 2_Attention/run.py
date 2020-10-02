@@ -12,7 +12,7 @@ import argparse
 import numpy as np
 from tqdm import tqdm
 
-from utils import preprocess
+from utils import preprocess, PrintExample
 from model import Encoder, Decoder, Seq2Seq
 
 parser = argparse.ArgumentParser()
@@ -30,6 +30,7 @@ parser.add_argument('--clip', default = 1.0, type = float, help = "Gradient Clip
 parser.add_argument('--model', default = 'Seq2Seq-attention.pt', type = str, help = "Trained model name")
 parser.add_argument('--train', action='store_true')
 parser.add_argument('--test', action='store_true')
+parser.add_argument('--attention', action='store_true')
 
 args = parser.parse_args()
 
@@ -81,7 +82,7 @@ def train():
 		pbar = tqdm(train_iter)
 		pbar.set_description("[(Train) Epoch{}]".format(epoch))
 
-		for batch in pbar:
+		for i, batch in enumerate(pbar):
 
 			src = batch.SRC.to(device)
 			trg = batch.TRG.to(device)
@@ -101,6 +102,7 @@ def train():
 			optimizer.step()
 			pbar.set_postfix(loss = loss.item())
 			epoch_loss += loss.item()
+
 
 		epoch_loss = epoch_loss / len(train_iter)
 
@@ -129,42 +131,9 @@ def train():
 			best_valid_loss = val_epoch_loss
 			torch.save(model, args.model)
 
-def Print(field, sent, From):
-
-	print("{} sentence: ".format(From), end='')
-	for s in sent:
-		if field.vocab.itos[s] in [field.eos_token, field.pad_token]:
-			break
-		elif field.vocab.itos[s] == field.init_token:
-			continue
-		elif field.vocab.itos[s] == field.unk_token:
-			print("<unk> ", end='')
-		else:
-			print("{} ".format(field.vocab.itos[s]), end='')
-	print("")
-
-
-def PrintExample(SRC, TRG, src, trg, output):
-
-	batch_size = src.shape[1]
-	randN = random.randint(0, batch_size-1)
-
-	_src = list(src[:, randN].cpu().numpy())
-	_trg = list(trg[1:, randN].cpu().numpy())
-	_out = list(output[1:, randN, :].squeeze(1).argmax(1).cpu().numpy())
-
-	Print(SRC, _src, "Source")
-	Print(TRG, _trg, "Target")
-	Print(TRG, _out, "Predicted")
-	print("")
-	return
-
-
-
 def test():
 	if not os.path.exists(args.model):
 		raise NameError('There is no model with named {}'.format(args.model))
-		return
 
 	batch_size = args.batch_size
 	enc_emb_dim = args.enc_emb_dim
@@ -201,7 +170,8 @@ def test():
 			trg = batch.TRG.to(device)
 			output = model(src, trg).to(device)
 
-			PrintExample(SRC, TRG, src, trg, output)
+			if args.attention:
+				PrintExample(model, SRC, TRG, src, trg, output)
 
 			output = output[1:].view(-1, output.shape[-1])
 			trg = trg[1:].view(-1)
@@ -210,7 +180,7 @@ def test():
 			avg_loss += loss.item()
 
 	avg_loss = avg_loss / len(test_iter)
-	print("[Test] Avg loss: {0:.4f}\n\n".format(avg_loss))
+	print("[Test] Avg loss: {0:.4f}".format(avg_loss))
 
 
 def main():
@@ -218,7 +188,6 @@ def main():
 		train()
 	if args.test:
 		test()
-
 
 if __name__ == '__main__':
 	main()
