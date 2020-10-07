@@ -49,7 +49,7 @@ Below is the schedule of the class.
 ||BLEU (original paper)|YES|2020.09.22|||
 ||Sequence to Sequence Learning with Neural Networks (original seq2seq NMT paper)|YES|2020.09.28|||
 ||Sequence Transduction with Recurrent Neural Networks (early seq2seq speech recognition paper)|YES|2020.09.28|||
-||Neural Machine Translation by Jointly Learning to Align and Translate (original seq2seq+attention paper)|NO||||
+||Neural Machine Translation by Jointly Learning to Align and Translate (original seq2seq+attention paper)|YES|2020.10.03|||
 ||Attention and Augmented Recurrent Neural Networks (blog post overview)|NO||||
 ||Massive Exploration of Neural Machine Translation Architectures (practical advice for hyperparameter choices)|NO||||
 |10|Practical Tips for Final Projects|NO||||
