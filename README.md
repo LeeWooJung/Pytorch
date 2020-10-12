@@ -6,6 +6,6 @@ Pytorch Exercise
 * Autoencoder
 * CS234n Lecture schedule and assignment
 * Word2Vec
-* Attention Mechanism(be in practice)
+* Attention Mechanism(need to add beamsearch)
 * Transformer(to be added...)
 * Other mechanism practice
