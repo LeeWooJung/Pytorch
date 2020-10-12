@@ -30,7 +30,7 @@ parser.add_argument('--clip', default = 1.0, type = float, help = "Gradient Clip
 parser.add_argument('--model', default = 'Seq2Seq-attention.pt', type = str, help = "Trained model name")
 parser.add_argument('--train', action='store_true')
 parser.add_argument('--test', action='store_true')
-parser.add_argument('--attention', action='store_true')
+parser.add_argument('--save_attention_figure', action='store_true')
 
 args = parser.parse_args()
 
@@ -53,6 +53,7 @@ def train():
 	n_epochs = args.n_epochs
 	clip = args.clip
 	min_freq = args.min_freq
+	attention = args.attention
 	device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 	best_valid_loss = float('inf')
@@ -66,8 +67,8 @@ def train():
 							 device = device)
 
 	enc = Encoder(SRC, enc_emb_dim, hidden_dim, n_layers, dropout, device).to(device)
-	dec = Decoder(TRG, dec_emb_dim, hidden_dim, n_layers, dropout, device).to(device)
-	model = Seq2Seq(enc, dec, n_layers, hidden_dim, device).to(device)
+	dec = Decoder(TRG, dec_emb_dim, hidden_dim, n_layers, dropout, attention, device).to(device)
+	model = Seq2Seq(enc, dec, n_layers, hidden_dim, attention, device).to(device)
 
 	optimizer = optim.Adam(model.parameters(), lr = lr)
 	trg_pad_idx = TRG.vocab.stoi[TRG.pad_token]
@@ -170,7 +171,7 @@ def test():
 			trg = batch.TRG.to(device)
 			output = model(src, trg).to(device)
 
-			if args.attention:
+			if args.save_attention_figure:
 				PrintExample(model, SRC, TRG, src, trg, output)
 
 			output = output[1:].view(-1, output.shape[-1])
