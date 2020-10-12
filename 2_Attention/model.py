@@ -29,11 +29,12 @@ class Decoder(nn.Module):
 
 		self.n_layers = n_layers
 		self.device = device
+		self.attention = attention
 		self.embedding = nn.Embedding(num_embeddings = len(TRG.vocab),
 									  embedding_dim = emb_dim,
 									  padding_idx = TRG.vocab['<pad>'])
-		self.decoder = nn.LSTMCell(input_size = emb_dim + hidden_dim, hidden_size = hidden_dim,
-								   bias = True)
+		self.decoder = nn.LSTMCell(input_size = emb_dim + hidden_dim,
+								   hidden_size = hidden_dim, bias = True)
 		self.dec_hidden_proj = nn.Linear(hidden_dim * 3, hidden_dim, bias = True)
 		self.fc_out = nn.Linear(hidden_dim, len(TRG.vocab))
 		self.dropout = nn.Dropout(dropout)
@@ -74,7 +75,6 @@ class Decoder(nn.Module):
 
 			e_t = torch.bmm(enc_hiddens_att.permute(1,0,2), hidden.unsqueeze(2)).squeeze(2)
 			# e_t: [batch size, src len]
-			e_t.data.masked_fill_(enc_masks.permute(1,0).bool(), -float('inf'))
 
 			alpha_t = F.softmax(e_t, dim=1)
 			# alpha_t: [batch size, src len]
@@ -85,8 +85,8 @@ class Decoder(nn.Module):
 			# a_t: [batch size, 2*hidden]
 
 			U_t = torch.cat((a_t, hidden), dim = 1) # U_t: [batch size, 3*hidden dim]
-			V_t = self.dec_hidden_proj(U_t) # V_t: [batch size, hidden dim]
-			O_t = self.dropout(V_t)
+			V_t = self.dec_hidden_proj(U_t) # V_t: [batch size, hidden_dim]
+			O_t = self.dropout(torch.tanh(V_t))
 
 			prev_out = O_t
 			outputs.append(O_t)
@@ -103,6 +103,7 @@ class Seq2Seq(nn.Module):
 		super(Seq2Seq, self).__init__()
 		self.encoder = encoder
 		self.decoder = decoder
+		self.attention = attention
 		self.device = device
 		self.enc_hidden_proj = nn.Linear(hidden_dim*4, hidden_dim, bias = False)
 		self.enc_cell_proj = nn.Linear(hidden_dim*4, hidden_dim, bias = False)
