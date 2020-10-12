@@ -52,9 +52,9 @@ Below is the schedule of the class.
 ||Neural Machine Translation by Jointly Learning to Align and Translate (original seq2seq+attention paper)|YES|2020.10.03|||
 ||Attention and Augmented Recurrent Neural Networks (blog post overview)|YES|2020.10.07|||
 ||Massive Exploration of Neural Machine Translation Architectures (practical advice for hyperparameter choices)|YES|2020.10.07|||
-|10|Practical Tips for Final Projects|NO||||
-||Practical Methodology(Deep Learning book chapter)|NO||Project Proposal||
-|11|Question Answering, the Default Final Project, and an introduction to Transformer architectures|NO|||Assignment4|
+|10|Practical Tips for Final Projects|YES|2020.10.12|||
+||Practical Methodology(Deep Learning book chapter)|YES|2020.10.12|Project Proposal||
+|11|Question Answering, the Default Final Project, and an introduction to Transformer architectures|YES|2020.10.12||Assignment4|
 ||Project Handout|NO||||
 ||Attention Is All You Need|NO||||
 ||The Illustrated Transformer|NO||||
