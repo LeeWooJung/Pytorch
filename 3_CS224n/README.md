@@ -56,7 +56,7 @@ Below is the schedule of the class.
 ||Practical Methodology(Deep Learning book chapter)|YES|2020.10.12|Project Proposal||
 |11|Question Answering, the Default Final Project, and an introduction to Transformer architectures|YES|2020.10.12||Assignment4|
 ||Project Handout|YES|2020.10.14|||
-||Attention Is All You Need|YES|2020.10.24|||
+||Attention Is All You Need|YES|2020.10.14|||
 ||The Illustrated Transformer|NO||||
 ||Transformer (Google AI blog post)|NO||||
 ||Layer Normalization|NO||||
