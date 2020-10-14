@@ -57,8 +57,8 @@ Below is the schedule of the class.
 |11|Question Answering, the Default Final Project, and an introduction to Transformer architectures|YES|2020.10.12||Assignment4|
 ||Project Handout|YES|2020.10.14|||
 ||Attention Is All You Need|YES|2020.10.14|||
-||The Illustrated Transformer|NO||||
-||Transformer (Google AI blog post)|NO||||
+||The Illustrated Transformer|YES|2020.10.14|||
+||Transformer (Google AI blog post)|YES|2020.10.14|||
 ||Layer Normalization|NO||||
 ||Image Transformer|NO||||
 ||Music Transformer: Generating music with long-term structure|NO||||
