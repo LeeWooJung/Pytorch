@@ -59,7 +59,7 @@ Below is the schedule of the class.
 ||Attention Is All You Need|YES|2020.10.14|||
 ||The Illustrated Transformer|YES|2020.10.14|||
 ||Transformer (Google AI blog post)|YES|2020.10.14|||
-||Layer Normalization|NO||||
+||Layer Normalization|YES|2020.10.16|||
 ||Image Transformer|NO||||
 ||Music Transformer: Generating music with long-term structure|NO||||
   
