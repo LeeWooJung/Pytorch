@@ -62,5 +62,25 @@ Below is the schedule of the class.
 ||Layer Normalization|YES|2020.10.16|||
 ||Image Transformer|YES|2020.10.19|||
 ||Music Transformer: Generating music with long-term structure|NO||||
-  
-etc...
+|12|ConvNets for NLP|NO||Assingment5||
+||Convolutional Neural Networks for Sentence Classification|NO||||
+||Improving neural networks by preventing co-adaptation of feature detectors|NO||||
+||A Convolutional Neural Network for Modelling Sentences|NO||||
+|13|Information from parts of words (Subword Models)|NO||||
+||Achieving Open Vocabulary Neural Machine Translation with Hybrid Word-Character Models|NO||||
+||Revisiting Character-Based Neural Machine Translation with Capacity and Compression|NO||||
+|14|Contextual Word Representations: BERT (guest lecture by Jacob Devlin)|NO||||
+||BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding|NO||||
+|15|Modeling contexts of use: Contextual Representations and Pretraining. ELMo and BERT.|NO||||
+||Contextual Word Representations: A Contextual Introduction.|NO|||Assignment5|
+||The Illustrated BERT, ELMo, and co.|NO||||
+|16|Reference in Language and Coreference Resolution|NO||||
+||Coreference Resolution chapter of Jurafsky and Martin|NO||||
+||End-to-end Neural Coreference Resolution|NO||||
+|17|Fairness and Inclusion in AI (guest lecture by Vinodkumar Prabhakaran)|NO||||
+|18|Constituency Parsing and Tree Recursive Neural Networks|NO||||
+||Parsing with Compositional Vector Grammars.|NO||||
+||Constituency Parsing with a Self-Attentive Encoder|NO||||
+|19|Virtual Office Hours with HuggingFace|NO||||
+|20|Recent Advances in Low Resource Machine Translation (guest lecture by Marc'Aurelio Ranzato)|NO||||
+|21|Analysis and Interpretability of Neural NLP|NO||||
