@@ -60,7 +60,7 @@ Below is the schedule of the class.
 ||The Illustrated Transformer|YES|2020.10.14|||
 ||Transformer (Google AI blog post)|YES|2020.10.14|||
 ||Layer Normalization|YES|2020.10.16|||
-||Image Transformer|NO||||
+||Image Transformer|YES|2020.10.19|||
 ||Music Transformer: Generating music with long-term structure|NO||||
   
 etc...
