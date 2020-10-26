@@ -62,7 +62,7 @@ Below is the schedule of the class.
 ||Layer Normalization|YES|2020.10.16|||
 ||Image Transformer|YES|2020.10.19|||
 ||Music Transformer: Generating music with long-term structure|YES|2020.10.22|||
-|12|ConvNets for NLP|NO||Assingment5||
+|12|ConvNets for NLP|YES|2020.10.26|Assingment5||
 ||Convolutional Neural Networks for Sentence Classification|NO||||
 ||Improving neural networks by preventing co-adaptation of feature detectors|NO||||
 ||A Convolutional Neural Network for Modelling Sentences|NO||||
