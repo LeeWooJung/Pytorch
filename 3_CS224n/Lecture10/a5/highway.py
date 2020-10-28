@@ -18,9 +18,9 @@ class Highway(nn.Module):
         """
         self.W_proj = nn.Linear(e_word, e_word, bias = True)
         self.W_gate = nn.Linear(e_word, e_word, bias = True)
-		self.relu = nn.ReLU()
+        self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
-		self.dropout = nn.Dropout(dropout)
+        self.dropout = nn.Dropout(dropout)
 
     def forward(self, x_conv_out):
         # x_proj = ReLU(W_proj * x_conv_out + b_proj)
