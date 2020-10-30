@@ -13,9 +13,8 @@ class Highway(nn.Module):
     ### YOUR CODE HERE for part 1f
 
     def __init__(self, e_word, dropout):
-        """
-        x_conv_out : [e_word, batch size]
-        """
+        super(Highway, self).__init__()
+
         self.W_proj = nn.Linear(e_word, e_word, bias = True)
         self.W_gate = nn.Linear(e_word, e_word, bias = True)
         self.relu = nn.ReLU()
@@ -23,6 +22,7 @@ class Highway(nn.Module):
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x_conv_out):
+        # x_conv_out : [batch size, e_word]
         # x_proj = ReLU(W_proj * x_conv_out + b_proj)
         # W_proj : [e_word, e_word]
         # x_proj : [e_word, batch size]
