@@ -1,39 +1,50 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
-CS224N 2019-20: Homework 5
+CS224N 2018-19: Homework 5
 """
 
+### YOUR CODE HERE for part 1i
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
+
 
 class CNN(nn.Module):
-    # Remember to delete the above 'pass' after your implementation
-    ### YOUR CODE HERE for part 1g
+    def __init__(self,
+                 embed_size: int = 50,
+                 m_word: int = 21,
+                 k: int = 5,
+                 f: int = None):
+        """ 
+        Init CNN which is a 1-D cnn.
+        @param embed_size (int): embedding size of char (dimensionality)
+        @param k: kernel size, also called window size
+        @param f: number of filters, should be embed_size of word
+        """
 
-    def __init__(self, k, e_char, e_word):
-        super(CNN,self).__init__()
+        # Conv1d: https://pytorch.org/docs/stable/nn.html?highlight=conv1d#torch.nn.functional.conv1d
+        # MaxPool1d
+        super(CNN, self).__init__()
+        self.conv1d = nn.Conv1d(in_channels=embed_size,
+                                out_channels=f,
+                                kernel_size=k)
+        # self.relu = nn.ReLU()
+        self.maxpool = nn.MaxPool1d(kernel_size=m_word - k + 1)
 
-        self.Conv1D = nn.Conv1d(in_channels = e_char, out_channels = e_word, kernel_size = k, bias = True)
-        self.relu = nn.ReLU()
+    def forward(self, X_reshaped: torch.Tensor) -> torch.Tensor:
+        """
+        map from X_reshaped to X_conv_out
+        @param X_reshaped (Tensor): Tensor of char-level embedding with shape (max_sentence_length, 
+                                    batch_size, e_char, m_word), where e_char = embed_size of char, 
+                                    m_word = max_word_length.
+        @return X_conv_out (Tensor): Tensor of word-level embedding with shape (max_sentence_length,
+                                    batch_size)
+        """
 
-    def forward(self, x_reshaped):
-        # x_reshaped : [e_char, m_word, batch_size]
-        x_reshaped = x_reshaped.permute(2,0,1)
-        # x_reshape : [batch size, e_char, m_word]
+        X_conv = self.conv1d(X_reshaped)
+        X_conv_out = self.maxpool(F.relu(X_conv))
 
-        # W : [e_word, e_char, k], b : [e_word] (e_word: number of filters, k : kernerl size)
-        # x_conv(i,t) = sum(W[i,:,:] ** x_reshaped[:,t:t+k-1]) + b_i
-        # ---> x_conv = Conv1D(x_reshaped)
-        x_conv = self.Conv1D(x_reshaped)
-        # x_conv : [batch size, e_word, m_word-k+1]
-        
-        # x_conv_out = MaxPool(ReLU(x_conv))
-        x_conv_out, _ = torch.max(self.relu(x_conv),2)
-        # x_conv_out : [batch size, e_word]
-        
-        return x_conv_out
+        return torch.squeeze(X_conv_out, -1)
 
-    ### END YOUR CODE
-
+### END YOUR CODE
