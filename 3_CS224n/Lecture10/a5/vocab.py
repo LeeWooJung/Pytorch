@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 """
-CS224N 2019-20: Homework 5
+CS224N 2018-19: Homework 5
 vocab.py: Vocabulary Generation
 Pencheng Yin <pcyin@cs.cmu.edu>
 Sahil Chopra <schopra8@stanford.edu>
-
 Usage:
     vocab.py --train-src=<file> --train-tgt=<file> [options] VOCAB_FILE
-
 Options:
     -h --help                  Show this screen.
     --train-src=<file>         File of training source sentences
@@ -34,7 +31,7 @@ class VocabEntry(object):
 
     def __init__(self, word2id=None):
         """ Init VocabEntry Instance.
-        @param word2id (dict): dictionary mapping words 2 indices
+        @param word2id (dict): dictionary mapping words 2(to) indices
         """
         if word2id:
             self.word2id = word2id
@@ -49,36 +46,40 @@ class VocabEntry(object):
 
         ## Additions to the A4 code:
         self.char_list = list(
-            """ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]""")
+            """ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789,;.!?:'\"/\\|_@#$%^&*~`+-=<>()[]"""
+        )
 
         self.char2id = dict()  # Converts characters to integers
-        self.char2id['<pad>'] = 0  # <pad> token
-        self.char2id['{'] = 1  # start of word token
-        self.char2id['}'] = 2  # end of word token
-        self.char2id['<unk>'] = 3  # <unk> token
-        for i, c in enumerate(self.char_list):
+        self.char2id['<pad>'] = 0
+        self.char2id['{'] = 1
+        self.char2id['}'] = 2
+        self.char2id['<unk>'] = 3
+        for i, c in enumerate(
+                self.char_list
+        ):  # the enumerate func turn a itrateble object to a indexed sequence
             self.char2id[c] = len(self.char2id)
-        self.char_pad = self.char2id['<pad>']
         self.char_unk = self.char2id['<unk>']
         self.start_of_word = self.char2id["{"]
         self.end_of_word = self.char2id["}"]
         assert self.start_of_word + 1 == self.end_of_word
 
-        self.id2char = {v: k for k, v in self.char2id.items()}  # Converts integers to characters
+        self.id2char = {v: k
+                        for k, v in self.char2id.items()
+                        }  # Converts integers to characters
         ## End additions to the A4 code
 
     def __getitem__(self, word):
         """ Retrieve word's index. Return the index for the unk
         token if the word is out of vocabulary.
         @param word (str): word to look up.
-        @returns index (int): index of word
+        @returns index (int): index of word 
         """
         return self.word2id.get(word, self.unk_id)
 
     def __contains__(self, word):
         """ Check if word is captured by VocabEntry.
         @param word (str): word to look up
-        @returns contains (bool): whether word is contained
+        @returns contains (bool): whether word is contained    
         """
         return word in self.word2id
 
@@ -123,14 +124,28 @@ class VocabEntry(object):
         @param sents (list[list[str]]): sentence(s) in words
         @return word_ids (list[list[list[int]]]): sentence(s) in indices
         """
-        return [[[self.char2id.get(c, self.char_unk) for c in ("{" + w + "}")] for w in s] for s in sents]
+        ### YOUR CODE HERE for part 1e
+        ### TODO:
+        ###     This method should convert characters in the input sentences into their
+        ###     corresponding character indices using the character vocabulary char2id
+        ###     defined above.
+        ###
+        ###     You must prepend each word with the `start_of_word` character and append
+        ###     with the `end_of_word` character.
+
+        return [[[self.char2id['{']] + [self.char2id[char] for char in word] +
+                 [self.char2id['}']] for word in sent] for sent in sents]
+
+        ### END YOUR CODE
 
     def words2indices(self, sents):
         """ Convert list of sentences of words into list of list of indices.
         @param sents (list[list[str]]): sentence(s) in words
         @return word_ids (list[list[int]]): sentence(s) in indices
         """
-        return [[self[w] for w in s] for s in sents]
+        # the usage of self[w] refer to self.__getitem__ method
+        word_ids = [[self[w] for w in s] for s in sents]
+        return word_ids
 
     def indices2words(self, word_ids):
         """ Convert list of indices into words.
@@ -139,43 +154,35 @@ class VocabEntry(object):
         """
         return [self.id2word[w_id] for w_id in word_ids]
 
-    def to_input_tensor_char(self, sents: List[List[str]], device: torch.device) -> torch.Tensor:
-        """ Convert list of sentences (words) into tensor with necessary padding for
+    def to_input_tensor_char(self, sents: List[List[str]],
+                             device: torch.device) -> torch.Tensor:
+        """ Convert list of sentences (words) into tensor with necessary padding for 
         shorter sentences.
-
         @param sents (List[List[str]]): list of sentences (words)
         @param device: device on which to load the tensor, i.e. CPU or GPU
-
         @returns sents_var: tensor of (max_sentence_length, batch_size, max_word_length)
         """
-        ### YOUR CODE HERE for part 1e
+        ### YOUR CODE HERE for part 1g
         ### TODO:
-        ###     - Use `words2charindices()` from this file, which converts each character to its corresponding index in the
-        ###       character-vocabulary.
-        ###     - Use `pad_sents_char()` from utils.py, which pads all words to max_word_length of all words in the batch,
-        ###       and pads all sentences to max length of all sentences in the batch. Read __init__ to see how to get
-        ###       index of character-padding token
-        ###     - Connect these two parts to convert the resulting padded sentences to a torch tensor.
-        ### HINT:
-        ###     - You may find .contiguous() useful after reshaping. Check the following links for more details:
-        ###         https://pytorch.org/docs/stable/tensors.html#torch.Tensor.contiguous
-        ###         https://pytorch.org/docs/stable/tensors.html#torch.Tensor.view
+        ###     Connect `words2charindices()` and `pad_sents_char()` which you've defined in
+        ###     previous parts
 
-        sents = self.words2charindices(sents)
-        sents_padded = pad_sents_char(sents, self.char_pad)
-        sents_var = torch.tensor(sents_padded, dtype = torch.long, device=device).permute(1,0,2)
-
-        return sents_var
+        word_ids = self.words2charindices(sents)
+        sents_padded_chars = pad_sents_char(
+            word_ids, char_pad_token=self.char2id['<pad>'])
+        sents_var = torch.tensor(sents_padded_chars,
+                                 dtype=torch.long,
+                                 device=device)
+        return torch.transpose(sents_var, 0, 1)
 
         ### END YOUR CODE
 
-    def to_input_tensor(self, sents: List[List[str]], device: torch.device) -> torch.Tensor:
+    def to_input_tensor(self, sents: List[List[str]],
+                        device: torch.device) -> torch.Tensor:
         """ Convert list of sentences (words) into tensor with necessary padding for 
         shorter sentences.
-
         @param sents (List[List[str]]): list of sentences (words)
         @param device: device on which to load the tesnor, i.e. CPU or GPU
-
         @returns sents_var: tensor of (max_sentence_length, batch_size)
         """
         word_ids = self.words2indices(sents)
@@ -194,9 +201,12 @@ class VocabEntry(object):
         vocab_entry = VocabEntry()
         word_freq = Counter(chain(*corpus))
         valid_words = [w for w, v in word_freq.items() if v >= freq_cutoff]
-        print('number of word types: {}, number of word types w/ frequency >= {}: {}'
-              .format(len(word_freq), freq_cutoff, len(valid_words)))
-        top_k_words = sorted(valid_words, key=lambda w: word_freq[w], reverse=True)[:size]
+        print(
+            'number of word types: {}, number of word types w/ frequency >= {}: {}'
+            .format(len(word_freq), freq_cutoff, len(valid_words)))
+        top_k_words = sorted(valid_words,
+                             key=lambda w: word_freq[w],
+                             reverse=True)[:size]
         for word in top_k_words:
             vocab_entry.add(word)
         return vocab_entry
@@ -236,7 +246,10 @@ class Vocab(object):
         """ Save Vocab to file as JSON dump.
         @param file_path (str): file path to vocab file
         """
-        json.dump(dict(src_word2id=self.src.word2id, tgt_word2id=self.tgt.word2id), open(file_path, 'w'), indent=2)
+        json.dump(dict(src_word2id=self.src.word2id,
+                       tgt_word2id=self.tgt.word2id),
+                  open(file_path, 'w'),
+                  indent=2)
 
     @staticmethod
     def load(file_path):
@@ -254,7 +267,8 @@ class Vocab(object):
         """ Representation of Vocab to be used
         when printing the object.
         """
-        return 'Vocab(source %d words, target %d words)' % (len(self.src), len(self.tgt))
+        return 'Vocab(source %d words, target %d words)' % (len(
+            self.src), len(self.tgt))
 
 
 if __name__ == '__main__':
@@ -266,8 +280,10 @@ if __name__ == '__main__':
     src_sents = read_corpus(args['--train-src'], source='src')
     tgt_sents = read_corpus(args['--train-tgt'], source='tgt')
 
-    vocab = Vocab.build(src_sents, tgt_sents, int(args['--size']), int(args['--freq-cutoff']))
-    print('generated vocabulary, source %d words, target %d words' % (len(vocab.src), len(vocab.tgt)))
+    vocab = Vocab.build(src_sents, tgt_sents, int(args['--size']),
+                        int(args['--freq-cutoff']))
+    print('generated vocabulary, source %d words, target %d words' %
+          (len(vocab.src), len(vocab.tgt)))
 
     vocab.save(args['VOCAB_FILE'])
     print('vocabulary saved to %s' % args['VOCAB_FILE'])
