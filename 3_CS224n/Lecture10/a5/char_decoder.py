@@ -36,6 +36,20 @@ class CharDecoder(nn.Module):
         ### YOUR CODE HERE for part 2a
         ### TODO - Implement the forward pass of the character decoder.
 
+        # input : [length, batch size]
+        # dec_hidden : 2 tuples of [1, batch size, hidden size] (h_0, c_0)
+
+        char_emb = self.decoderCharEmb(input)
+		# char_emb : [length, batch size, char embedding size]
+
+        hidden, dec_hidden = self.charDecoder(char_emb, dec_hidden)
+        # hidden, dec_hidden : [length, batch size, hidden size]
+
+        scores = self.char_output_projection(hidden)
+        # scores: [length, batch size, vocab size]
+
+        return scores, dec_hidden
+
         ### END YOUR CODE
 
     def train_forward(self, char_sequence, dec_hidden=None):
