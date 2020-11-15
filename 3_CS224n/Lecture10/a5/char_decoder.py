@@ -68,6 +68,15 @@ class CharDecoder(nn.Module):
         ###       - Carefully read the documentation for nn.CrossEntropyLoss and our handout to see what this criterion have already included:
         ###             https://pytorch.org/docs/stable/nn.html#crossentropyloss
 
+        input_sequence = char_sequence[:-1]
+        target_sequence = char_sequence[1:]
+
+        scores, dec_hidden = self.forward(input_sequence, dec_hidden)
+        LOSS = nn.CrossEntropyLoss(ignore_index = self.target_vocab.char_pad, reduction = 'sum')
+
+        ce_loss = LOSS(scores.permute(1,2,0), target_sequence.permute(1,0))
+
+        return ce_loss
         ### END YOUR CODE
 
     def decode_greedy(self, initialStates, device, max_length=21):
