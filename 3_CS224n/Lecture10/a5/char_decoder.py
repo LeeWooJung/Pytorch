@@ -113,7 +113,6 @@ class CharDecoder(nn.Module):
             output_word += [current_char]
 
         output_word = torch.cat(output_word).t().tolist()
-        print(output_word)
         decodedWords = []
 
         for output in output_word:
@@ -126,7 +125,6 @@ class CharDecoder(nn.Module):
                 word += self.target_vocab.id2char[output_idx]
             decodedWords.append(word)
 
-        print(decodedWords)
         return decodedWords
         ### END YOUR CODE
 
