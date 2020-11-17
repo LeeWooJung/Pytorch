@@ -69,7 +69,7 @@ Below is the schedule of the class.
 |13|Information from parts of words (Subword Models)|YES|2020.11.03|||
 ||Achieving Open Vocabulary Neural Machine Translation with Hybrid Word-Character Models|YES|2020.11.03|||
 ||Revisiting Character-Based Neural Machine Translation with Capacity and Compression|YES|2020.11.04|||
-|14|Contextual Word Representations: BERT (guest lecture by Jacob Devlin)|NO||||
+|14|Contextual Word Representations: BERT (guest lecture by Jacob Devlin)|YES|2020.11.17||Asssignment5-Done|
 ||BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding|NO||||
 |15|Modeling contexts of use: Contextual Representations and Pretraining. ELMo and BERT.|NO||||
 ||Contextual Word Representations: A Contextual Introduction.|NO|||Assignment5|
