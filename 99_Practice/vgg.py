@@ -17,6 +17,8 @@ epochs = 10
 inDim = 3
 nLabels = 10
 vgg_type = 'A'
+lowest_loss = 1000
+filename = 'vgg.pt'
 
 random.seed(seed)
 np.random.seed(seed)
@@ -37,10 +39,10 @@ class vgg(nn.Module):
         self.FCs = nn.Sequential(
             nn.Linear(512*7*7, 4096),
             nn.ReLU(True),
-            nn.Dropout(drop_prob = drop_prob),
+            nn.Dropout(drop_prob),
             nn.Linear(4096,4096),
             nn.ReLU(True),
-            nn.Dropout(drop_prob = drop_prob),
+            nn.Dropout(drop_prob),
             nn.Linear(4096, nLabels)
         )
 
@@ -50,6 +52,14 @@ class vgg(nn.Module):
         x = x.view(x.size(0), -1)
         x = self.FCs(x)
         return x
+
+def save_checkpoint(epoch, model, optimizer, filename):
+    state = {
+        'Epoch': epoch,
+        'State_dict': model.state_dict(),
+        'optimizer': optimizer.state_dict()
+    }
+    torch.save(state, filename)
 
 def vgg_layers(cfg, batch_norm = False):
     layers = []
@@ -73,7 +83,7 @@ cfg = { 'A': [64, 'M', 128, 'M', 256, 256, 'M', 512, 512, 'M', 512, 512, 'M'],
         'E': [64, 64, 'M', 128, 128, 'M', 256, 256, 256, 256, 'M', 512, 512, 512, 512, 'M', 512, 512, 512, 512, 'M'] }
 
 layers = vgg_layers(cfg[vgg_type], batch_norm=True)
-model = vgg(layers = layers, inDim = inDim, nLabels=nLabels).to(device)
+model = vgg(layers = layers, inDim = inDim, nLabels=nLabels, drop_prob=drop_prob).to(device)
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -83,8 +93,8 @@ transform = transforms.Compose(
 train = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform = transform)
 test = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform = transform)
 
-trainloader = torch.utils.data.DataLoader(train, batch_size = batch_size, shuffle = True, num_workers=2, device = device)
-testloader = torch.utils.data.DataLoader(test, batch_size = batch_size, shuffle = False, num_workers=2, device = device)
+trainloader = torch.utils.data.DataLoader(train, batch_size = batch_size, shuffle = True)
+testloader = torch.utils.data.DataLoader(test, batch_size = batch_size, shuffle = False)
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr = lr)
@@ -112,3 +122,23 @@ for epoch in range(1, epochs+1):
         epoch_loss += loss.item()
 
     epoch_loss = epoch_loss / len(trainloader)
+
+    if epoch_loss < lowest_loss:
+        lowest_loss = epoch_loss
+        save_checkpoint(epochs, model, optimizer, filename)
+
+checkpoint = torch.load(filename)
+model.load_state_dict(checkpoint['State_dict'])
+optimizer.load_state_dict(checkpoint['optimizer'])
+
+model.eval()
+correct, total = 0
+with torch.no_grad():
+    for i, (images, labels) in enumerate(testloader):
+        images = images.to(device)
+        outputs = model(images)
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+print("Total test accuracy: {0:.2f}%".format(correct/total))
