@@ -132,7 +132,7 @@ model.load_state_dict(checkpoint['State_dict'])
 optimizer.load_state_dict(checkpoint['optimizer'])
 
 model.eval()
-correct, total = 0
+correct, total = 0, 0
 with torch.no_grad():
     for i, (images, labels) in enumerate(testloader):
         images = images.to(device)
@@ -141,4 +141,4 @@ with torch.no_grad():
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
 
-print("Total test accuracy: {0:.2f}%".format(correct/total))
+print("Total test accuracy: {0:.2f}".format(correct/total))
