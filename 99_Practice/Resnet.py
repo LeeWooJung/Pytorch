@@ -244,7 +244,7 @@ for epoch in range(1, epochs+1):
         pbar.set_postfix(loss = loss.item())
         epoch_loss += loss.item()
 
-    epcoh_loss = epoch_loss / len(trloader)
+    epoch_loss = epoch_loss / len(trloader)
 
     if epoch_loss < lowest_loss:
         lowest_loss = epoch_loss
