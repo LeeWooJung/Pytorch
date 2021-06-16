@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from torchsummary import summary
 
+import math
 import random
 import numpy as np
 
@@ -49,6 +50,17 @@ class MobilenetV1(nn.Module):
         self.DSBlocks = self.make_layer(block, inDims, outDims, strides)
         self.avgPool = nn.AvgPool2d(7)
         self.LastLayer = nn.Linear(outDims[-1], nLabels)
+
+        # initialization
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
+                m.weight.data.normal_(0, math.sqrt(2. /n))
+            elif isinstance(m, nn.BatchNorm2d):
+                m.weight.data.fill_(1)
+                m.bias.data.zero_()
+            elif isinstance(m, nn.Linear):
+                m.bias.data.zero_()
 
     def make_layer(self, block, inDims, outDims, strides):
         layers = []
